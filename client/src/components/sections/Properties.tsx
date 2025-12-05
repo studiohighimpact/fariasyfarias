@@ -11,14 +11,14 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Bed, Bath, Car, Ruler, Phone, MapPin, ExternalLink } from "lucide-react";
+import { Bed, Bath, Car, Ruler, Phone, MapPin, Maximize2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 type Property = {
   id: string;
@@ -98,6 +98,8 @@ const properties: Property[] = [
 ];
 
 function PropertyCard({ property }: { property: Property }) {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -187,77 +189,115 @@ function PropertyCard({ property }: { property: Property }) {
              <Dialog>
                <DialogTrigger asChild>
                  <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-sm h-10">
-                   Ver Detalles Completes
+                   Ver Detalles
                  </Button>
                </DialogTrigger>
-               <DialogContent className="max-w-3xl max-h-[90vh] p-0 overflow-hidden bg-white">
-                 <ScrollArea className="max-h-[90vh]">
-                   <div className="p-6">
-                      <DialogHeader className="mb-6">
-                        <div className="flex items-center gap-3 mb-2">
-                          <Badge className="bg-primary text-white">{property.type}</Badge>
-                          <span className="text-sm text-muted-foreground flex items-center"><MapPin className="w-3 h-3 mr-1" /> {property.location}</span>
+               <DialogContent className="max-w-4xl max-h-[95vh] p-0 overflow-hidden bg-white border-none shadow-2xl">
+                 <ScrollArea className="max-h-[95vh]">
+                   <div className="p-6 md:p-8">
+                      <DialogHeader className="mb-6 sticky top-0 bg-white z-20 pb-4 border-b border-gray-100">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                          <div>
+                             <div className="flex items-center gap-3 mb-2">
+                                <Badge className="bg-primary text-white">{property.type}</Badge>
+                                <span className="text-sm text-muted-foreground flex items-center"><MapPin className="w-3 h-3 mr-1" /> {property.location}</span>
+                             </div>
+                             <DialogTitle className="font-serif text-2xl md:text-3xl">{property.title}</DialogTitle>
+                          </div>
+                          <div className="flex gap-2">
+                             {property.contacts.map((contact, idx) => (
+                               <Button key={idx} size="sm" className="bg-green-600 hover:bg-green-700 text-white" asChild>
+                                  <a href={`https://wa.me/549${contact.phone}`} target="_blank" rel="noopener noreferrer">
+                                    <Phone className="w-4 h-4 mr-2" />
+                                    Contactar
+                                  </a>
+                               </Button>
+                             ))}
+                          </div>
                         </div>
-                        <DialogTitle className="font-serif text-2xl">{property.title}</DialogTitle>
                       </DialogHeader>
                       
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div className="space-y-4">
-                          <div className="aspect-video rounded-md overflow-hidden bg-gray-100">
-                             <img src={property.images[0]} alt="Principal" className="w-full h-full object-cover" />
-                          </div>
-                          <div className="grid grid-cols-4 gap-2">
-                            {property.images.slice(1, 5).map((img, i) => (
-                              <div key={i} className="aspect-square rounded-sm overflow-hidden bg-gray-100">
-                                <img src={img} alt="Thumb" className="w-full h-full object-cover" />
-                              </div>
-                            ))}
+                      <div className="space-y-8">
+                        {/* Main Gallery with Carousel */}
+                        <div className="rounded-lg overflow-hidden bg-gray-100 border border-gray-200 relative group">
+                          <Carousel className="w-full">
+                            <CarouselContent>
+                              {property.images.map((img, i) => (
+                                <CarouselItem key={i}>
+                                  <div className="relative w-full aspect-video md:aspect-[16/9]">
+                                     <img 
+                                       src={img} 
+                                       alt={`Foto ${i + 1}`} 
+                                       className="w-full h-full object-contain bg-black" 
+                                     />
+                                  </div>
+                                </CarouselItem>
+                              ))}
+                            </CarouselContent>
+                            <CarouselPrevious className="left-4 bg-white/80 hover:bg-white text-black" />
+                            <CarouselNext className="right-4 bg-white/80 hover:bg-white text-black" />
+                          </Carousel>
+                          
+                          {/* Image Thumbnails Strip (Optional visual aid) */}
+                          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 px-4 py-2 rounded-full text-white text-xs font-medium backdrop-blur-sm">
+                            Desliza para ver más fotos
                           </div>
                         </div>
                         
-                        <div className="space-y-6">
-                          <div>
-                            <h4 className="font-semibold mb-2">Descripción</h4>
-                            <div className="space-y-2 text-sm text-gray-600 leading-relaxed">
-                              {property.description.map((p, i) => (
-                                <p key={i}>{p}</p>
-                              ))}
+                        <div className="grid md:grid-cols-3 gap-8">
+                          <div className="md:col-span-2 space-y-6">
+                            <div>
+                              <h4 className="font-serif text-xl mb-3 text-primary border-l-4 border-primary pl-3">Descripción</h4>
+                              <div className="space-y-3 text-base text-gray-600 leading-relaxed">
+                                {property.description.map((p, i) => (
+                                  <p key={i}>{p}</p>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-gray-100">
+                                {property.features.bedrooms && (
+                                  <div className="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-lg text-center">
+                                    <Bed className="w-6 h-6 text-primary mb-2" />
+                                    <span className="text-xs text-gray-500 uppercase font-semibold">Dormitorios</span>
+                                    <span className="font-bold text-lg">{property.features.bedrooms}</span>
+                                  </div>
+                                )}
+                                {property.features.bathrooms && (
+                                  <div className="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-lg text-center">
+                                    <Bath className="w-6 h-6 text-primary mb-2" />
+                                    <span className="text-xs text-gray-500 uppercase font-semibold">Baños</span>
+                                    <span className="font-bold text-lg">{property.features.bathrooms}</span>
+                                  </div>
+                                )}
+                                {property.features.area && (
+                                  <div className="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-lg text-center">
+                                    <Ruler className="w-6 h-6 text-primary mb-2" />
+                                    <span className="text-xs text-gray-500 uppercase font-semibold">Superficie</span>
+                                    <span className="font-bold text-lg">{property.features.area}</span>
+                                  </div>
+                                )}
+                                {property.features.parking && (
+                                  <div className="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-lg text-center">
+                                    <Car className="w-6 h-6 text-primary mb-2" />
+                                    <span className="text-xs text-gray-500 uppercase font-semibold">Cochera</span>
+                                    <span className="font-bold text-lg">Sí</span>
+                                  </div>
+                                )}
                             </div>
                           </div>
                           
-                          <div>
-                            <h4 className="font-semibold mb-2">Características</h4>
-                            <ul className="grid grid-cols-2 gap-2 text-sm">
-                              {property.features.other?.map((feat, i) => (
-                                <li key={i} className="flex items-center text-gray-600">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
-                                  {feat}
-                                </li>
-                              ))}
-                              {property.features.bedrooms && <li>{property.features.bedrooms} Dormitorios</li>}
-                              {property.features.bathrooms && <li>{property.features.bathrooms} Baños</li>}
-                            </ul>
-                          </div>
-                          
-                          <div className="bg-gray-50 p-4 rounded-sm border border-gray-100">
-                            <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide">Contacto Directo</h4>
-                            <div className="space-y-3">
-                              {property.contacts.map((contact, idx) => (
-                                <div key={idx} className="flex items-center justify-between">
-                                  <span className="font-medium text-sm">{contact.name}</span>
-                                  <Button size="sm" variant="outline" className="h-8" asChild>
-                                    <a 
-                                      href={`https://wa.me/549${contact.phone}`} 
-                                      target="_blank" 
-                                      rel="noopener noreferrer"
-                                      className="text-primary hover:text-primary/80"
-                                    >
-                                      <Phone className="w-3 h-3 mr-2" />
-                                      WhatsApp
-                                    </a>
-                                  </Button>
-                                </div>
-                              ))}
+                          <div className="space-y-6">
+                            <div>
+                              <h4 className="font-semibold mb-3">Características</h4>
+                              <ul className="space-y-2 text-sm">
+                                {property.features.other?.map((feat, i) => (
+                                  <li key={i} className="flex items-start text-gray-600 bg-gray-50 p-2 rounded-sm">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 mr-2 shrink-0" />
+                                    {feat}
+                                  </li>
+                                ))}
+                              </ul>
                             </div>
                           </div>
                         </div>

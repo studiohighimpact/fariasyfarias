@@ -19,6 +19,7 @@ export default function Header() {
     { name: "Home", href: "#home" },
     { name: "Sobre Nosotros", href: "#about" },
     { name: "Propiedades", href: "#properties" },
+    { name: "Servicios", href: "#services" },
     { name: "Contacto", href: "#contact" },
   ];
 
@@ -35,8 +36,8 @@ export default function Header() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out",
         isScrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-gray-100 py-3 shadow-sm"
-          : "bg-transparent py-5"
+          ? "bg-primary text-white border-b border-white/10 py-3 shadow-md"
+          : "bg-primary text-white py-4 shadow-sm"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -45,13 +46,10 @@ export default function Header() {
           <img
             src="https://res.cloudinary.com/dwspyodrs/image/upload/v1764947812/553372246_18137888824432283_2474607405858223405_n_iovfh4.jpg"
             alt="Farias & Farias Logo"
-            className="h-12 w-auto object-contain rounded-sm"
+            className="h-10 w-auto object-contain rounded-sm bg-white p-0.5"
           />
-          <span className={cn(
-            "font-serif font-bold text-xl tracking-tight transition-colors",
-            isScrolled ? "text-primary" : "text-primary"
-          )}>
-            Farias <span className="font-sans font-normal text-lg">&</span> Farias
+          <span className="font-serif font-bold text-xl tracking-tight text-white">
+            Farias <span className="font-sans font-normal text-lg opacity-80">&</span> Farias
           </span>
         </a>
 
@@ -65,14 +63,14 @@ export default function Header() {
                 e.preventDefault();
                 scrollToSection(link.href);
               }}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full"
+              className="text-sm font-medium text-white/90 hover:text-white transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-white after:transition-all hover:after:w-full"
             >
               {link.name}
             </a>
           ))}
           <Button 
             onClick={() => scrollToSection("#contact")}
-            className="bg-primary hover:bg-primary/90 text-white text-sm px-6 rounded-sm font-medium"
+            className="bg-white text-primary hover:bg-blue-50 text-sm px-6 rounded-sm font-semibold border border-transparent hover:border-white/50 transition-all"
           >
             Contactar Ahora
           </Button>
@@ -80,7 +78,7 @@ export default function Header() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-foreground p-2"
+          className="md:hidden text-white p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -89,7 +87,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-lg py-6 px-4 flex flex-col gap-4 animate-in slide-in-from-top-5 fade-in duration-200">
+        <div className="md:hidden absolute top-full left-0 w-full bg-primary border-t border-white/10 shadow-xl py-6 px-4 flex flex-col gap-4 animate-in slide-in-from-top-5 fade-in duration-200 text-white">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -98,14 +96,14 @@ export default function Header() {
                 e.preventDefault();
                 scrollToSection(link.href);
               }}
-              className="text-base font-medium text-foreground/90 hover:text-primary py-2 border-b border-gray-50"
+              className="text-base font-medium text-white/90 hover:text-white py-2 border-b border-white/10"
             >
               {link.name}
             </a>
           ))}
           <Button 
             onClick={() => scrollToSection("#contact")}
-            className="w-full bg-primary text-white mt-2"
+            className="w-full bg-white text-primary font-bold mt-2"
           >
             Contactar Ahora
           </Button>

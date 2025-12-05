@@ -36,19 +36,19 @@ export default function About() {
             className="order-1 md:order-2 flex justify-center"
           >
             <div className="relative w-full max-w-sm aspect-[9/16] rounded-xl overflow-hidden shadow-2xl border border-gray-100 bg-black">
+              {/* Removed background=1 to allow audio control, but kept other params. 
+                  Vimeo iframe embeds usually default to unmuted if not autoplay=1&muted=1. 
+                  However, browsers block unmuted autoplay. 
+                  To ensure volume is max, user interaction is usually required or we remove the background param.
+              */}
               <iframe 
-                src="https://player.vimeo.com/video/1143865550?h=04711083ad&title=0&byline=0&portrait=0&badge=0&background=1" 
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300%] h-full" 
+                src="https://player.vimeo.com/video/1143865550?h=04711083ad&title=0&byline=0&portrait=0&badge=0" 
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[180%] h-full" 
                 frameBorder="0" 
                 allow="autoplay; fullscreen; picture-in-picture" 
                 allowFullScreen
                 title="Presentación Farias & Farias"
-                style={{ pointerEvents: 'none' }}
               ></iframe>
-              {/* Overlay to ensure video fits nicely or allows interaction if needed, but background=1 makes it loop cleanly */}
-              <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-white font-serif text-xl">Conocé nuestra propuesta</p>
-              </div>
             </div>
           </motion.div>
 
