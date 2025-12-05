@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import heroImage from "@assets/stock_images/modern_duplex_house__ed1edb2e.jpg";
 
 export default function Hero() {
   const scrollToSection = (href: string) => {
@@ -14,8 +15,11 @@ export default function Hero() {
     <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white -z-20" />
-      <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop')] bg-cover bg-center -z-10 mix-blend-overlay grayscale" />
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent -z-10" />
+      <div 
+        className="absolute inset-0 opacity-20 bg-cover bg-center -z-10 mix-blend-overlay grayscale" 
+        style={{ backgroundImage: `url(${heroImage})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent -z-10" />
 
       <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
         <motion.div 
@@ -24,12 +28,12 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-2xl"
         >
-          <div className="inline-block mb-4 px-3 py-1 bg-secondary/10 text-secondary-foreground text-xs font-semibold tracking-wider uppercase rounded-full border border-secondary/20">
+          <div className="inline-block mb-4 px-3 py-1 bg-primary/10 text-primary text-xs font-semibold tracking-wider uppercase rounded-full border border-primary/20">
             Brokers Inmobiliarios
           </div>
           
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.1] text-primary mb-6 text-balance">
-            Tu próximo hogar, <span className="italic text-secondary">inversión</span> o proyecto está acá.
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.1] text-gray-900 mb-6 text-balance">
+            Tu próximo hogar, <span className="italic text-primary">inversión</span> o proyecto está acá.
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed text-balance">
@@ -63,11 +67,11 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="hidden md:block relative h-[600px] w-full"
         >
-          {/* Abstract decorative composition */}
+          {/* Main Image */}
           <div className="absolute top-10 right-10 w-4/5 h-4/5 bg-gray-200 rounded-sm overflow-hidden shadow-2xl">
              <img 
-               src="https://images.unsplash.com/photo-1600596542815-3ad19fb0070b?q=80&w=2070&auto=format&fit=crop" 
-               alt="Luxury Interior" 
+               src={heroImage}
+               alt="Duplex en Cordoba" 
                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
              />
           </div>
@@ -75,14 +79,14 @@ export default function Hero() {
              <div className="w-full h-full overflow-hidden rounded-sm bg-gray-100">
                 <img 
                   src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" 
-                  alt="Modern Architecture" 
+                  alt="Arquitectura moderna" 
                   className="w-full h-full object-cover"
                 />
              </div>
           </div>
           
-          {/* Gold Accent Box */}
-          <div className="absolute bottom-20 right-0 w-24 h-24 bg-secondary/20 backdrop-blur-sm -z-10 rounded-full blur-3xl" />
+          {/* Blue Accent Box */}
+          <div className="absolute bottom-20 right-0 w-32 h-32 bg-primary/20 backdrop-blur-sm -z-10 rounded-full blur-3xl" />
         </motion.div>
       </div>
     </section>

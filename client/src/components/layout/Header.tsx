@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -42,17 +41,17 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
+        <a href="#" className="flex items-center gap-3 group">
           <img
             src="https://res.cloudinary.com/dwspyodrs/image/upload/v1764947812/553372246_18137888824432283_2474607405858223405_n_iovfh4.jpg"
             alt="Farias & Farias Logo"
-            className="h-10 w-auto object-contain rounded-sm"
+            className="h-12 w-auto object-contain rounded-sm"
           />
           <span className={cn(
             "font-serif font-bold text-xl tracking-tight transition-colors",
             isScrolled ? "text-primary" : "text-primary"
           )}>
-            Farias & Farias
+            Farias <span className="font-sans font-normal text-lg">&</span> Farias
           </span>
         </a>
 
@@ -66,7 +65,7 @@ export default function Header() {
                 e.preventDefault();
                 scrollToSection(link.href);
               }}
-              className="text-sm font-medium text-foreground/80 hover:text-secondary transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-secondary after:transition-all hover:after:w-full"
+              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full"
             >
               {link.name}
             </a>
@@ -99,7 +98,7 @@ export default function Header() {
                 e.preventDefault();
                 scrollToSection(link.href);
               }}
-              className="text-base font-medium text-foreground/90 hover:text-secondary py-2 border-b border-gray-50"
+              className="text-base font-medium text-foreground/90 hover:text-primary py-2 border-b border-gray-50"
             >
               {link.name}
             </a>

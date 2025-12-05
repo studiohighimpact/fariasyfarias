@@ -8,7 +8,16 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Bed, Bath, Car, Ruler, Phone, MapPin } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Bed, Bath, Car, Ruler, Phone, MapPin, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
 type Property = {
@@ -33,7 +42,7 @@ const properties: Property[] = [
   {
     id: "prop-1",
     title: "Dúplex en Housing Reina Sofía",
-    type: "Alquiler",
+    type: "Venta",
     location: "Villa Allende",
     features: {
       bedrooms: 3,
@@ -42,8 +51,10 @@ const properties: Property[] = [
       other: ["Cocina-comedor integrada", "Todos los servicios", "Asador", "Apto Crédito Bancor"]
     },
     description: [
-      "¡Alquiler de dúplex en Housing Reina Sofía, Villa Allende!",
-      "Excelente oportunidad para vivir en un entorno tranquilo y seguro."
+      "¡Dúplex en Housing Reina Sofía, Villa Allende!",
+      "Excelente oportunidad para vivir en un entorno tranquilo y seguro.",
+      "Cuenta con 3 dormitorios amplios, 2 baños completos, cochera y una moderna cocina-comedor integrada.",
+      "Disfruta de un asador propio y todos los servicios conectados. Apto para crédito Bancor."
     ],
     images: [
       "https://res.cloudinary.com/dwspyodrs/image/upload/v1764948226/469133634_18109474144432283_723113790107506353_n_rxzehf.jpg",
@@ -68,8 +79,9 @@ const properties: Property[] = [
       other: ["20m x 42m", "1 oficina", "Seguridad 24hs"]
     },
     description: [
-      "¡Alquiler de galpón en Parque Industrial Unquillo!",
-      "Espacio ideal para logística o producción con excelente accesibilidad."
+      "¡Alquiler de galpón en Parque Industrial Unquillo – Punto 53!",
+      "Espacio ideal para logística o producción con excelente accesibilidad.",
+      "Cuenta con 840 m² construidos (20m x 42m), oficina privada, baño y seguridad las 24 horas."
     ],
     images: [
       "https://res.cloudinary.com/dwspyodrs/image/upload/v1764948226/469158253_18109464778432283_8099332184661074234_n_xww8mg.jpg",
@@ -95,7 +107,7 @@ function PropertyCard({ property }: { property: Property }) {
     >
       <Card className="overflow-hidden border-0 shadow-lg group bg-white rounded-sm h-full flex flex-col">
         <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
-          <Badge className="absolute top-4 left-4 z-10 bg-secondary text-primary-foreground hover:bg-secondary/90 font-medium text-xs px-3 py-1 uppercase tracking-wide rounded-sm">
+          <Badge className="absolute top-4 left-4 z-10 bg-primary text-white hover:bg-primary/90 font-bold text-sm px-4 py-1 uppercase tracking-wide rounded-sm shadow-md">
             {property.type}
           </Badge>
           
@@ -115,8 +127,8 @@ function PropertyCard({ property }: { property: Property }) {
               ))}
             </CarouselContent>
             <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-               <CarouselPrevious className="static translate-y-0 h-8 w-8 bg-white/80 hover:bg-white border-0" />
-               <CarouselNext className="static translate-y-0 h-8 w-8 bg-white/80 hover:bg-white border-0" />
+               <CarouselPrevious className="static translate-y-0 h-8 w-8 bg-white/80 hover:bg-white border-0 text-black" />
+               <CarouselNext className="static translate-y-0 h-8 w-8 bg-white/80 hover:bg-white border-0 text-black" />
             </div>
           </Carousel>
         </div>
@@ -124,12 +136,12 @@ function PropertyCard({ property }: { property: Property }) {
         <CardContent className="p-6 flex-1 flex flex-col">
           <div className="mb-4">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="font-serif text-xl font-semibold text-primary leading-tight">
+              <h3 className="font-serif text-xl font-semibold text-gray-900 leading-tight">
                 {property.title}
               </h3>
             </div>
             <div className="flex items-center text-muted-foreground text-sm mb-4">
-              <MapPin className="h-4 w-4 mr-1 text-secondary" />
+              <MapPin className="h-4 w-4 mr-1 text-primary" />
               {property.location}
             </div>
           </div>
@@ -138,25 +150,25 @@ function PropertyCard({ property }: { property: Property }) {
           <div className="grid grid-cols-2 gap-y-2 gap-x-4 mb-6 text-sm text-gray-600">
             {property.features.bedrooms && (
               <div className="flex items-center gap-2">
-                <Bed className="h-4 w-4 text-gray-400" />
+                <Bed className="h-4 w-4 text-primary" />
                 <span>{property.features.bedrooms} Dormitorios</span>
               </div>
             )}
             {property.features.bathrooms && (
               <div className="flex items-center gap-2">
-                <Bath className="h-4 w-4 text-gray-400" />
+                <Bath className="h-4 w-4 text-primary" />
                 <span>{property.features.bathrooms} Baños</span>
               </div>
             )}
             {property.features.area && (
               <div className="flex items-center gap-2">
-                <Ruler className="h-4 w-4 text-gray-400" />
+                <Ruler className="h-4 w-4 text-primary" />
                 <span>{property.features.area}</span>
               </div>
             )}
             {property.features.parking && (
               <div className="flex items-center gap-2">
-                <Car className="h-4 w-4 text-gray-400" />
+                <Car className="h-4 w-4 text-primary" />
                 <span>Cochera</span>
               </div>
             )}
@@ -165,33 +177,95 @@ function PropertyCard({ property }: { property: Property }) {
           {/* Additional Features list */}
           <div className="flex flex-wrap gap-2 mb-6">
             {property.features.other?.slice(0, 3).map((feat, i) => (
-              <span key={i} className="text-xs bg-gray-50 px-2 py-1 rounded-sm text-gray-500 border border-gray-100">
+              <span key={i} className="text-xs bg-blue-50 px-2 py-1 rounded-sm text-blue-700 border border-blue-100">
                 {feat}
               </span>
             ))}
           </div>
 
           <div className="mt-auto pt-4 border-t border-gray-100">
-             <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">Consultas</p>
-             <div className="space-y-2">
-               {property.contacts.map((contact, idx) => (
-                 <div key={idx} className="flex items-center justify-between text-sm">
-                   <span className="text-foreground font-medium">{contact.name}</span>
-                   <a 
-                     href={`https://wa.me/549${contact.phone}`} 
-                     target="_blank" 
-                     rel="noopener noreferrer"
-                     className="flex items-center text-secondary hover:text-primary transition-colors font-medium"
-                   >
-                     <Phone className="h-3 w-3 mr-1" />
-                     {contact.phone}
-                   </a>
-                 </div>
-               ))}
-             </div>
-             <Button className="w-full mt-4 bg-primary hover:bg-primary/90 text-white rounded-sm">
-               Ver Detalles
-             </Button>
+             <Dialog>
+               <DialogTrigger asChild>
+                 <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-sm h-10">
+                   Ver Detalles Completes
+                 </Button>
+               </DialogTrigger>
+               <DialogContent className="max-w-3xl max-h-[90vh] p-0 overflow-hidden bg-white">
+                 <ScrollArea className="max-h-[90vh]">
+                   <div className="p-6">
+                      <DialogHeader className="mb-6">
+                        <div className="flex items-center gap-3 mb-2">
+                          <Badge className="bg-primary text-white">{property.type}</Badge>
+                          <span className="text-sm text-muted-foreground flex items-center"><MapPin className="w-3 h-3 mr-1" /> {property.location}</span>
+                        </div>
+                        <DialogTitle className="font-serif text-2xl">{property.title}</DialogTitle>
+                      </DialogHeader>
+                      
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                          <div className="aspect-video rounded-md overflow-hidden bg-gray-100">
+                             <img src={property.images[0]} alt="Principal" className="w-full h-full object-cover" />
+                          </div>
+                          <div className="grid grid-cols-4 gap-2">
+                            {property.images.slice(1, 5).map((img, i) => (
+                              <div key={i} className="aspect-square rounded-sm overflow-hidden bg-gray-100">
+                                <img src={img} alt="Thumb" className="w-full h-full object-cover" />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-6">
+                          <div>
+                            <h4 className="font-semibold mb-2">Descripción</h4>
+                            <div className="space-y-2 text-sm text-gray-600 leading-relaxed">
+                              {property.description.map((p, i) => (
+                                <p key={i}>{p}</p>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          <div>
+                            <h4 className="font-semibold mb-2">Características</h4>
+                            <ul className="grid grid-cols-2 gap-2 text-sm">
+                              {property.features.other?.map((feat, i) => (
+                                <li key={i} className="flex items-center text-gray-600">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
+                                  {feat}
+                                </li>
+                              ))}
+                              {property.features.bedrooms && <li>{property.features.bedrooms} Dormitorios</li>}
+                              {property.features.bathrooms && <li>{property.features.bathrooms} Baños</li>}
+                            </ul>
+                          </div>
+                          
+                          <div className="bg-gray-50 p-4 rounded-sm border border-gray-100">
+                            <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide">Contacto Directo</h4>
+                            <div className="space-y-3">
+                              {property.contacts.map((contact, idx) => (
+                                <div key={idx} className="flex items-center justify-between">
+                                  <span className="font-medium text-sm">{contact.name}</span>
+                                  <Button size="sm" variant="outline" className="h-8" asChild>
+                                    <a 
+                                      href={`https://wa.me/549${contact.phone}`} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="text-primary hover:text-primary/80"
+                                    >
+                                      <Phone className="w-3 h-3 mr-2" />
+                                      WhatsApp
+                                    </a>
+                                  </Button>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                   </div>
+                 </ScrollArea>
+               </DialogContent>
+             </Dialog>
           </div>
         </CardContent>
       </Card>
@@ -205,7 +279,7 @@ export default function Properties() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-serif text-3xl md:text-4xl mb-4 text-primary">Propiedades Destacadas</h2>
-          <div className="w-16 h-1 bg-secondary mx-auto mb-6" />
+          <div className="w-16 h-1 bg-primary mx-auto mb-6" />
           <p className="text-muted-foreground text-lg">
             Explorá nuestra selección exclusiva de propiedades en Córdoba.
           </p>

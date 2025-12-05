@@ -32,16 +32,15 @@
 
 @layer base {
   :root {
-    /* Farias & Farias Palette
-       Primary (Black): #0A0A0A -> 0 0% 4%
-       Secondary (Gold): #D4AF37 -> 47 65% 52%
-       Light Bg: #F8FAFC -> 210 20% 98%
-       Main Text: #0F172A -> 215 28% 17%
-       Secondary Text: #64748B -> 215 16% 47%
+    /* Farias & Farias Palette - Updated
+       Primary (Blue): #004481 -> 208 100% 25% (Deep Royal Blue) or similar
+       Let's go with a vibrant professional blue: #0056b3 -> 211 100% 35%
+       Secondary (Black): #0A0A0A -> 0 0% 4%
+       Background: White/Light Gray
     */
     
-    --background: 210 20% 98%; /* #F8FAFC */
-    --foreground: 215 28% 17%; /* #0F172A */
+    --background: 0 0% 100%;
+    --foreground: 215 28% 17%; /* Dark Slate */
     
     --card: 0 0% 100%;
     --card-foreground: 215 28% 17%;
@@ -49,14 +48,15 @@
     --popover: 0 0% 100%;
     --popover-foreground: 215 28% 17%;
     
-    --primary: 0 0% 4%; /* #0A0A0A */
-    --primary-foreground: 47 65% 52%; /* Gold text on black */
+    /* Blue from Logo (Approximate Professional Real Estate Blue) */
+    --primary: 217 91% 35%; /* Strong Blue */
+    --primary-foreground: 0 0% 100%; /* White text */
     
-    --secondary: 47 65% 52%; /* #D4AF37 */
-    --secondary-foreground: 0 0% 4%; /* Black text on gold */
+    --secondary: 0 0% 4%; /* Black */
+    --secondary-foreground: 0 0% 100%; /* White text */
     
     --muted: 210 40% 96.1%;
-    --muted-foreground: 215 16% 47%; /* #64748B */
+    --muted-foreground: 215 16% 47%;
     
     --accent: 210 40% 96.1%;
     --accent-foreground: 215 28% 17%;
@@ -66,14 +66,12 @@
     
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 47 65% 52%; /* Gold ring */
+    --ring: 217 91% 60%; /* Blue ring */
     
     --radius: 0.5rem;
   }
   
   .dark {
-    /* Dark mode adaptation if needed, though design specifies light bg primarily. 
-       Keeping consistent with brand but inverted where appropriate */
     --background: 0 0% 4%;
     --foreground: 210 20% 98%;
     
@@ -83,11 +81,11 @@
     --popover: 0 0% 8%;
     --popover-foreground: 210 20% 98%;
     
-    --primary: 47 65% 52%; /* Gold as primary in dark */
-    --primary-foreground: 0 0% 4%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
     
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 0 0% 98%;
+    --secondary-foreground: 0 0% 4%;
     
     --muted: 0 0% 15%;
     --muted-foreground: 215 20% 65%;
@@ -100,7 +98,7 @@
     
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 47 65% 52%;
+    --ring: 217 91% 60%;
   }
   
   * {
@@ -108,7 +106,7 @@
   }
   
   body {
-    @apply font-sans antialiased bg-background text-foreground selection:bg-secondary/30 selection:text-primary;
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -123,25 +121,19 @@
 
 /* Utility classes for specific design elements */
 @layer utilities {
-  .text-gold {
-    color: hsl(47 65% 52%);
-  }
-  .bg-gold {
-    background-color: hsl(47 65% 52%);
-  }
-  .border-gold {
-    border-color: hsl(47 65% 52%);
-  }
-  
-  .glass-panel {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
-  }
-  
-  .hero-gradient {
-    background: linear-gradient(135deg, hsl(210 20% 98%) 0%, hsl(210 20% 95%) 100%);
-  }
-  
   .text-balance {
     text-wrap: balance;
+  }
+  
+  /* Custom scrollbar for dialog content */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 20px;
   }
 }
