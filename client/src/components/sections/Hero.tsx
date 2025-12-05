@@ -11,10 +11,12 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full -z-20">
-        <div className="absolute inset-0 bg-black/20 z-10" /> {/* Overlay for better text contrast */}
+        {/* Dark overlay to ensure video doesn't clash if it loads brightly, though we use a white card now so it matters less */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
+        
         <iframe
           src="https://player.vimeo.com/video/1143889798?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
           className="absolute top-1/2 left-1/2 w-[177.77777778vh] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover"
@@ -30,17 +32,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-3xl w-full bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-lg shadow-2xl text-center"
+          className="max-w-3xl w-full bg-white/95 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-sm shadow-2xl text-center"
         >
           <div className="inline-block mb-6 px-3 py-1 bg-primary text-white text-xs font-semibold tracking-wider uppercase rounded-full shadow-sm">
             Brokers Inmobiliarios
           </div>
           
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium leading-[1.1] text-white mb-6 text-balance drop-shadow-md">
-            Tu próximo hogar, <span className="italic text-blue-200">inversión</span> o proyecto está acá.
+          {/* Text color changed to dark (primary/gray) for readability on white card */}
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium leading-[1.1] text-primary mb-6 text-balance">
+            Tu próximo hogar, <span className="italic text-secondary">inversión</span> o proyecto está acá.
           </h1>
           
-          <p className="text-lg md:text-xl text-blue-50 mb-10 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-sm">
+          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
             Asesoramiento inmobiliario profesional en Córdoba. 
             Experiencia, transparencia y resultados.
           </p>
@@ -49,7 +52,7 @@ export default function Hero() {
             <Button 
               onClick={() => scrollToSection("#properties")}
               size="lg" 
-              className="bg-white text-primary hover:bg-blue-50 text-base px-8 py-6 h-auto rounded-sm shadow-lg transition-all hover:translate-y-[-2px] font-semibold"
+              className="bg-primary hover:bg-primary/90 text-white text-base px-8 py-6 h-auto rounded-sm shadow-lg transition-all hover:translate-y-[-2px] font-semibold"
             >
               Ver Propiedades
             </Button>
@@ -57,7 +60,7 @@ export default function Hero() {
               onClick={() => scrollToSection("#contact")}
               variant="outline" 
               size="lg" 
-              className="border-white text-white hover:bg-white/20 text-base px-8 py-6 h-auto rounded-sm transition-all group backdrop-blur-sm"
+              className="border-primary text-primary hover:bg-primary/5 text-base px-8 py-6 h-auto rounded-sm transition-all group"
             >
               Contactar Ahora
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
