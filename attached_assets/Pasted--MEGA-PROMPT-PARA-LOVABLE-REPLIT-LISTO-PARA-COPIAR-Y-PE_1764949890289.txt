@@ -1,0 +1,225 @@
+✅ MEGA-PROMPT PARA LOVABLE / REPLIT (LISTO PARA COPIAR Y PEGAR)
+
+Crea un sitio web profesional y moderno para Farias & Farias – Brokers Inmobiliarios, diseñado con React + Vite, TailwindCSS, estructura modular, diseño minimalista premium y estilo de inmobiliaria de alta gama.
+Debes generar una SPA (Single Page Application) completamente responsive y optimizada.
+
+Incluye en la raíz del proyecto este archivo obligatorio vercel.json:
+
+{
+  "framework": "vite",
+  "outputDirectory": "dist/public",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+
+🏢 DESCRIPCIÓN DEL NEGOCIO
+
+Farias & Farias Broker Inmobiliarios es una inmobiliaria profesional dedicada a alquileres, ventas y asesoramiento inmobiliario en Córdoba. Se especializa en brindar un servicio cercano, confiable, transparente y con alto estándar visual.
+
+🎨 ESTILO Y PALETA
+
+Diseño minimalista premium, inspirado en inmobiliarias internacionales.
+
+Colores sugeridos:
+
+Primario: #0A0A0A (negro elegante)
+
+Secundario: #D4AF37 (dorado premium)
+
+Fondo claro: #F8FAFC
+
+Texto principal: #0F172A
+
+Texto secundario: #64748B
+
+Fondo tarjetas: #FFFFFF
+
+Hover primario: tono 20% más claro del negro
+
+Hover secundario: dorado más brillante
+
+🧱 ESTRUCTURA GENERAL DEL SITIO
+
+Debe incluir las siguientes secciones:
+
+🔝 HEADER (Fijo, elegante y minimalista)
+
+Logo a la izquierda (usar este logo):
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764947812/553372246_18137888824432283_2474607405858223405_n_iovfh4.jpg
+
+Menú a la derecha:
+
+Home
+
+Sobre Nosotros
+
+Propiedades
+
+Contacto
+
+Botón destacado moderno: "Contactar Ahora"
+
+Header sticky con fondo blur en scroll.
+
+🦾 HERO
+
+Hero profesional típico de inmobiliaria moderna.
+
+Elementos:
+
+Logo centrado o alineado a la izquierda.
+
+Título grande y elegante:
+"Tu próximo hogar, inversión o proyecto está acá."
+
+Subtítulo minimalista:
+Asesoramiento inmobiliario profesional en Córdoba y Sierras Chicas.
+
+2 CTAs:
+
+Ver Propiedades (primario)
+
+Contactar ahora (secundario)
+
+Imagen de fondo suave o gradient muy sutil.
+
+Estilo premium: espacioso, minimal, elegante, tipografía moderna.
+
+🧑‍💼 SECCIÓN SOBRE NOSOTROS
+
+Debe incluir:
+
+Texto llamativo:
+
+En Farias & Farias acompañamos cada decisión inmobiliaria con transparencia, compromiso y una mirada profesional del mercado. Nuestro objetivo es ayudarte a encontrar el lugar perfecto para vivir, invertir o hacer crecer tu proyecto.
+
+Debajo agregar el video con formato elegante y espacios adecuados:
+🎥 Video de presentación:
+https://vimeo.com/1143865550?share=copy&fl=sv&fe=ci
+
+🏘️ SECCIÓN DE PROPIEDADES
+
+Estilo: tarjetas amplias, minimalistas, con galería slider en cada propiedad.
+
+Propiedad 1 — Dúplex en Villa Allende (Alquiler)
+
+Fotos:
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948226/469133634_18109474144432283_723113790107506353_n_rxzehf.jpg
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948226/469197058_18109474153432283_1228949851894969080_n_ppcqci.jpg
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948227/469223609_18109474171432283_2485127863772668001_n_lgqjsw.jpg
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948227/469221894_18109474189432283_3153418952065752577_n_x2zrno.jpg
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948226/469158470_18109474168432283_1136589578601841811_n_rvgkfz.jpg
+
+Descripción:
+
+🏡✨ ¡Alquiler de dúplex en Housing Reina Sofía, Villa Allende!
+🔑 3 dormitorios
+🚿 2 baños
+🚗 Cochera
+🍴 Cocina-comedor integrada
+💡 Todos los servicios
+🔥 Asador
+💳 Apto Crédito Bancor
+
+📍 Ubicación: Villa Allende, Housing Reina Sofía
+📞 Consultas y visitas:
+📲 Julián Farías: 3515303648
+📲 Pablo Farías: 3513099491
+
+Propiedad 2 — Galpón en Parque Industrial Unquillo (Alquiler)
+
+Fotos:
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948226/469158253_18109464778432283_8099332184661074234_n_xww8mg.jpg
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948227/469317517_18109464787432283_5941424751079910110_n_paztio.jpg
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948226/469221811_18109464796432283_3301661146349366591_n_qa000i.jpg
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948226/469177168_18109464814432283_330326810759628485_n_ctrkao.jpg
+
+https://res.cloudinary.com/dwspyodrs/image/upload/v1764948227/469377372_18109464805432283_4757630496880933489_n_ekmqso.jpg
+
+Descripción:
+
+🏭✨ ¡Alquiler de galpón en Parque Industrial Unquillo – Punto 53!
+📏 840 m² construidos
+➡️ 20 m x 42 m
+🚻 1 baño
+🖇️ 1 oficina
+👮‍♂️ Seguridad 24 hs
+
+📍 Ubicación: Parque Industrial Unquillo
+📞 Consultas y visitas:
+📲 Julián Farías: 3515303648
+📲 Pablo Farías: 3513099491
+
+📞 SECCIÓN DE CONTACTO (Muy llamativa y persuasiva)
+Texto principal:
+
+"¿Listo para dar el próximo paso? Hablemos hoy."
+
+CTA fuertes:
+
+Llamar Ahora — click-to-call
+
+Enviar WhatsApp
+
+Ver Propiedades Disponibles
+
+Instagram Oficial
+https://www.instagram.com/fariasyfarias_inmobiliaria/
+
+Datos:
+
+📲 Julián Farías: 3515303648
+
+📲 Pablo Farías: 3513099491
+
+🌐 Instagram: botón visual moderno
+
+Mapa embebido si lo consideras conveniente
+
+🧩 CARACTERÍSTICAS ADICIONALES
+
+Animaciones sutiles tipo fade/slide
+
+Botones modernos con hover elegante
+
+Transiciones suaves
+
+Cards minimalistas y limpias
+
+Galerías con slider
+
+SEO básico + metadata
+
+Schema local business
+
+Diseño tipo "real estate luxury" internacional
+
+Scroll suave
+
+Lazy loading para imágenes
+
+Componentes reutilizables
+
+⚙️ REQUISITOS TÉCNICOS
+
+React con functional components + hooks
+
+TailwindCSS
+
+Routing con React Router
+
+SPA optimizada
+
+Archivo vercel.json incluido desde el inicio
+
+Proyecto listo para deploy en Vercel sin errores 404
