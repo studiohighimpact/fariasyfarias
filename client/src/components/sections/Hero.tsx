@@ -15,19 +15,18 @@ export default function Hero() {
     <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-20 overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden">
+        {/* Using a more standard embed approach without background=1 which can fail on free accounts */}
         <iframe
-          src="https://player.vimeo.com/video/1143889798?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-          className="absolute top-1/2 left-1/2 w-[177.77777778vh] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
-          frameBorder="0"
+          src="https://player.vimeo.com/video/1143889798?autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0"
+          className="absolute top-1/2 left-1/2 w-[300%] h-[300%] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none opacity-100"
           allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
           title="Hero Video"
         />
       </div>
 
       {/* Overlay to ensure text readability while seeing the video */}
-      <div className="absolute inset-0 bg-white/60 -z-10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent -z-10" />
+      <div className="absolute inset-0 bg-white/40 -z-10 mix-blend-overlay" />
+      <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent -z-10" />
 
       <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
         <motion.div 
