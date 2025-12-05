@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import heroImage from "@assets/stock_images/modern_duplex_house__ed1edb2e.jpg";
 
 export default function Hero() {
   const scrollToSection = (href: string) => {
@@ -12,47 +11,45 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-20 overflow-hidden">
+    <section id="home" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden">
-        {/* Using a more standard embed approach without background=1 which can fail on free accounts */}
+      <div className="absolute inset-0 w-full h-full -z-20">
+        <div className="absolute inset-0 bg-black/20 z-10" /> {/* Overlay for better text contrast */}
         <iframe
-          src="https://player.vimeo.com/video/1143889798?autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0"
-          className="absolute top-1/2 left-1/2 w-[300%] h-[300%] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none opacity-100"
+          src="https://player.vimeo.com/video/1143889798?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+          className="absolute top-1/2 left-1/2 w-[177.77777778vh] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover"
+          frameBorder="0"
           allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
           title="Hero Video"
         />
       </div>
 
-      {/* Overlay to ensure text readability while seeing the video */}
-      <div className="absolute inset-0 bg-white/40 -z-10 mix-blend-overlay" />
-      <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent -z-10" />
-
-      <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-20 flex justify-center">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-2xl"
+          className="max-w-3xl w-full bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-lg shadow-2xl text-center"
         >
-          <div className="inline-block mb-4 px-3 py-1 bg-primary/10 text-primary text-xs font-semibold tracking-wider uppercase rounded-full border border-primary/20 bg-white/80 backdrop-blur-sm">
+          <div className="inline-block mb-6 px-3 py-1 bg-primary text-white text-xs font-semibold tracking-wider uppercase rounded-full shadow-sm">
             Brokers Inmobiliarios
           </div>
           
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.1] text-gray-900 mb-6 text-balance">
-            Tu próximo hogar, <span className="italic text-primary">inversión</span> o proyecto está acá.
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium leading-[1.1] text-white mb-6 text-balance drop-shadow-md">
+            Tu próximo hogar, <span className="italic text-blue-200">inversión</span> o proyecto está acá.
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed text-balance font-medium">
+          <p className="text-lg md:text-xl text-blue-50 mb-10 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-sm">
             Asesoramiento inmobiliario profesional en Córdoba. 
             Experiencia, transparencia y resultados.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               onClick={() => scrollToSection("#properties")}
               size="lg" 
-              className="bg-primary hover:bg-primary/90 text-white text-base px-8 py-6 h-auto rounded-sm shadow-lg shadow-primary/20 transition-all hover:translate-y-[-2px] w-full sm:w-auto"
+              className="bg-white text-primary hover:bg-blue-50 text-base px-8 py-6 h-auto rounded-sm shadow-lg transition-all hover:translate-y-[-2px] font-semibold"
             >
               Ver Propiedades
             </Button>
@@ -60,40 +57,12 @@ export default function Hero() {
               onClick={() => scrollToSection("#contact")}
               variant="outline" 
               size="lg" 
-              className="border-primary/20 text-primary hover:bg-primary/5 hover:text-primary text-base px-8 py-6 h-auto rounded-sm transition-all group w-full sm:w-auto bg-white/50 backdrop-blur-sm"
+              className="border-white text-white hover:bg-white/20 text-base px-8 py-6 h-auto rounded-sm transition-all group backdrop-blur-sm"
             >
               Contactar Ahora
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
-        </motion.div>
-        
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          className="hidden md:block relative h-[500px] lg:h-[600px] w-full"
-        >
-          {/* Main Image */}
-          <div className="absolute top-10 right-10 w-4/5 h-4/5 bg-gray-200 rounded-sm overflow-hidden shadow-2xl">
-             <img 
-               src={heroImage}
-               alt="Duplex en Cordoba" 
-               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-             />
-          </div>
-          <div className="absolute bottom-10 left-10 w-1/2 h-1/2 bg-white p-2 shadow-xl rounded-sm z-10">
-             <div className="w-full h-full overflow-hidden rounded-sm bg-gray-100">
-                <img 
-                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" 
-                  alt="Arquitectura moderna" 
-                  className="w-full h-full object-cover"
-                />
-             </div>
-          </div>
-          
-          {/* Blue Accent Box */}
-          <div className="absolute bottom-20 right-0 w-32 h-32 bg-primary/20 backdrop-blur-sm -z-10 rounded-full blur-3xl" />
         </motion.div>
       </div>
     </section>
