@@ -16,7 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Bed, Bath, Car, Ruler, Phone, MapPin, Maximize2 } from "lucide-react";
+import { Bed, Bath, Car, Ruler, Phone, MapPin, Maximize2, UtensilsCrossed, Zap, Flame, Maximize, Briefcase, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -37,6 +37,36 @@ type Property = {
   images: string[];
   contacts: { name: string; phone: string }[];
 };
+
+// Helper function to map feature text to appropriate icon
+function getFeatureIcon(feature: string) {
+  const lowerFeature = feature.toLowerCase();
+  
+  if (lowerFeature.includes("cocina") || lowerFeature.includes("comedor")) {
+    return <UtensilsCrossed className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0" />;
+  }
+  if (lowerFeature.includes("servicio") || lowerFeature.includes("agua") || lowerFeature.includes("gas") || lowerFeature.includes("luz")) {
+    return <Zap className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0" />;
+  }
+  if (lowerFeature.includes("asador")) {
+    return <Flame className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0" />;
+  }
+  if (lowerFeature.includes("m²") || lowerFeature.includes("m x") || lowerFeature.includes("superficie") || lowerFeature.includes("area")) {
+    return <Maximize className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0" />;
+  }
+  if (lowerFeature.includes("oficina")) {
+    return <Briefcase className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0" />;
+  }
+  if (lowerFeature.includes("seguridad") || lowerFeature.includes("24")) {
+    return <Shield className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0" />;
+  }
+  if (lowerFeature.includes("credito") || lowerFeature.includes("bancor")) {
+    return <Maximize2 className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0" />;
+  }
+  
+  // Default icon
+  return <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-primary shrink-0" />;
+}
 
 const properties: Property[] = [
   {
@@ -176,11 +206,12 @@ function PropertyCard({ property }: { property: Property }) {
           </div>
           
           {/* Additional Features list */}
-          <div className="flex flex-wrap gap-2 mb-6 h-[3.5rem] overflow-hidden">
-            {property.features.other?.slice(0, 3).map((feat, i) => (
-              <span key={i} className="text-xs bg-blue-50 px-2 py-1 rounded-sm text-blue-700 border border-blue-100 whitespace-nowrap">
-                {feat}
-              </span>
+          <div className="flex flex-col gap-2 mb-6">
+            {property.features.other?.map((feat, i) => (
+              <div key={i} className="flex items-center gap-2 text-xs bg-blue-50 px-3 py-2 rounded-sm text-blue-700 border border-blue-100">
+                {getFeatureIcon(feat)}
+                <span>{feat}</span>
+              </div>
             ))}
           </div>
 
@@ -289,9 +320,9 @@ function PropertyCard({ property }: { property: Property }) {
                               <h4 className="font-semibold mb-3">Características</h4>
                               <ul className="space-y-2 text-sm">
                                 {property.features.other?.map((feat, i) => (
-                                  <li key={i} className="flex items-start text-gray-600 bg-gray-50 p-2 rounded-sm">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 mr-2 shrink-0" />
-                                    {feat}
+                                  <li key={i} className="flex items-center gap-3 text-gray-600 bg-gray-50 p-3 rounded-sm">
+                                    {getFeatureIcon(feat)}
+                                    <span>{feat}</span>
                                   </li>
                                 ))}
                               </ul>
