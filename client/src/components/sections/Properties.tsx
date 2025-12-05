@@ -98,14 +98,13 @@ const properties: Property[] = [
 ];
 
 function PropertyCard({ property }: { property: Property }) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
+      className="h-full"
     >
       <Card className="overflow-hidden border-0 shadow-lg group bg-white rounded-sm h-full flex flex-col">
         <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
@@ -138,13 +137,13 @@ function PropertyCard({ property }: { property: Property }) {
         <CardContent className="p-6 flex-1 flex flex-col">
           <div className="mb-4">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="font-serif text-xl font-semibold text-gray-900 leading-tight">
+              <h3 className="font-serif text-xl font-semibold text-gray-900 leading-tight line-clamp-2 h-[3.5rem]">
                 {property.title}
               </h3>
             </div>
             <div className="flex items-center text-muted-foreground text-sm mb-4">
-              <MapPin className="h-4 w-4 mr-1 text-primary" />
-              {property.location}
+              <MapPin className="h-4 w-4 mr-1 text-primary shrink-0" />
+              <span className="truncate">{property.location}</span>
             </div>
           </div>
 
@@ -152,34 +151,34 @@ function PropertyCard({ property }: { property: Property }) {
           <div className="grid grid-cols-2 gap-y-2 gap-x-4 mb-6 text-sm text-gray-600">
             {property.features.bedrooms && (
               <div className="flex items-center gap-2">
-                <Bed className="h-4 w-4 text-primary" />
+                <Bed className="h-4 w-4 text-primary shrink-0" />
                 <span>{property.features.bedrooms} Dormitorios</span>
               </div>
             )}
             {property.features.bathrooms && (
               <div className="flex items-center gap-2">
-                <Bath className="h-4 w-4 text-primary" />
+                <Bath className="h-4 w-4 text-primary shrink-0" />
                 <span>{property.features.bathrooms} Baños</span>
               </div>
             )}
             {property.features.area && (
               <div className="flex items-center gap-2">
-                <Ruler className="h-4 w-4 text-primary" />
+                <Ruler className="h-4 w-4 text-primary shrink-0" />
                 <span>{property.features.area}</span>
               </div>
             )}
             {property.features.parking && (
               <div className="flex items-center gap-2">
-                <Car className="h-4 w-4 text-primary" />
+                <Car className="h-4 w-4 text-primary shrink-0" />
                 <span>Cochera</span>
               </div>
             )}
           </div>
           
           {/* Additional Features list */}
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-6 h-[3.5rem] overflow-hidden">
             {property.features.other?.slice(0, 3).map((feat, i) => (
-              <span key={i} className="text-xs bg-blue-50 px-2 py-1 rounded-sm text-blue-700 border border-blue-100">
+              <span key={i} className="text-xs bg-blue-50 px-2 py-1 rounded-sm text-blue-700 border border-blue-100 whitespace-nowrap">
                 {feat}
               </span>
             ))}
@@ -192,31 +191,34 @@ function PropertyCard({ property }: { property: Property }) {
                    Ver Detalles
                  </Button>
                </DialogTrigger>
-               <DialogContent className="max-w-4xl max-h-[95vh] p-0 overflow-hidden bg-white border-none shadow-2xl">
-                 <ScrollArea className="max-h-[95vh]">
-                   <div className="p-6 md:p-8">
-                      <DialogHeader className="mb-6 sticky top-0 bg-white z-20 pb-4 border-b border-gray-100">
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                          <div>
-                             <div className="flex items-center gap-3 mb-2">
-                                <Badge className="bg-primary text-white">{property.type}</Badge>
-                                <span className="text-sm text-muted-foreground flex items-center"><MapPin className="w-3 h-3 mr-1" /> {property.location}</span>
-                             </div>
-                             <DialogTitle className="font-serif text-2xl md:text-3xl">{property.title}</DialogTitle>
-                          </div>
-                          <div className="flex gap-2">
-                             {property.contacts.map((contact, idx) => (
-                               <Button key={idx} size="sm" className="bg-green-600 hover:bg-green-700 text-white" asChild>
-                                  <a href={`https://wa.me/549${contact.phone}`} target="_blank" rel="noopener noreferrer">
-                                    <Phone className="w-4 h-4 mr-2" />
-                                    Contactar
-                                  </a>
-                               </Button>
-                             ))}
-                          </div>
-                        </div>
-                      </DialogHeader>
-                      
+               <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] p-0 overflow-hidden bg-white border-none shadow-2xl rounded-lg flex flex-col">
+                 {/* Fixed Header */}
+                 <DialogHeader className="p-4 md:p-6 border-b border-gray-100 bg-white shrink-0">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div>
+                         <div className="flex items-center gap-3 mb-2">
+                            <Badge className="bg-primary text-white">{property.type}</Badge>
+                            <span className="text-sm text-muted-foreground flex items-center"><MapPin className="w-3 h-3 mr-1" /> {property.location}</span>
+                         </div>
+                         <DialogTitle className="font-serif text-xl md:text-3xl text-left leading-tight">{property.title}</DialogTitle>
+                      </div>
+                      <div className="flex gap-2 shrink-0">
+                         {property.contacts.map((contact, idx) => (
+                           <Button key={idx} size="sm" className="bg-green-600 hover:bg-green-700 text-white flex-1 md:flex-auto" asChild>
+                              <a href={`https://wa.me/549${contact.phone}`} target="_blank" rel="noopener noreferrer">
+                                <Phone className="w-4 h-4 mr-2" />
+                                <span className="hidden md:inline">Contactar</span>
+                                <span className="md:hidden">WhatsApp</span>
+                              </a>
+                           </Button>
+                         ))}
+                      </div>
+                    </div>
+                 </DialogHeader>
+                 
+                 {/* Scrollable Content */}
+                 <ScrollArea className="flex-1 overflow-y-auto">
+                   <div className="p-4 md:p-8 pb-10">
                       <div className="space-y-8">
                         {/* Main Gallery with Carousel */}
                         <div className="rounded-lg overflow-hidden bg-gray-100 border border-gray-200 relative group">
@@ -234,14 +236,9 @@ function PropertyCard({ property }: { property: Property }) {
                                 </CarouselItem>
                               ))}
                             </CarouselContent>
-                            <CarouselPrevious className="left-4 bg-white/80 hover:bg-white text-black" />
-                            <CarouselNext className="right-4 bg-white/80 hover:bg-white text-black" />
+                            <CarouselPrevious className="left-2 md:left-4 bg-white/80 hover:bg-white text-black" />
+                            <CarouselNext className="right-2 md:right-4 bg-white/80 hover:bg-white text-black" />
                           </Carousel>
-                          
-                          {/* Image Thumbnails Strip (Optional visual aid) */}
-                          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 px-4 py-2 rounded-full text-white text-xs font-medium backdrop-blur-sm">
-                            Desliza para ver más fotos
-                          </div>
                         </div>
                         
                         <div className="grid md:grid-cols-3 gap-8">
@@ -255,33 +252,33 @@ function PropertyCard({ property }: { property: Property }) {
                               </div>
                             </div>
 
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-gray-100">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 pt-4 border-t border-gray-100">
                                 {property.features.bedrooms && (
-                                  <div className="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-lg text-center">
-                                    <Bed className="w-6 h-6 text-primary mb-2" />
-                                    <span className="text-xs text-gray-500 uppercase font-semibold">Dormitorios</span>
-                                    <span className="font-bold text-lg">{property.features.bedrooms}</span>
+                                  <div className="flex flex-col items-center justify-center p-3 md:p-4 bg-blue-50 rounded-lg text-center">
+                                    <Bed className="w-5 h-5 md:w-6 md:h-6 text-primary mb-2" />
+                                    <span className="text-[10px] md:text-xs text-gray-500 uppercase font-semibold">Dormitorios</span>
+                                    <span className="font-bold text-base md:text-lg">{property.features.bedrooms}</span>
                                   </div>
                                 )}
                                 {property.features.bathrooms && (
-                                  <div className="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-lg text-center">
-                                    <Bath className="w-6 h-6 text-primary mb-2" />
-                                    <span className="text-xs text-gray-500 uppercase font-semibold">Baños</span>
-                                    <span className="font-bold text-lg">{property.features.bathrooms}</span>
+                                  <div className="flex flex-col items-center justify-center p-3 md:p-4 bg-blue-50 rounded-lg text-center">
+                                    <Bath className="w-5 h-5 md:w-6 md:h-6 text-primary mb-2" />
+                                    <span className="text-[10px] md:text-xs text-gray-500 uppercase font-semibold">Baños</span>
+                                    <span className="font-bold text-base md:text-lg">{property.features.bathrooms}</span>
                                   </div>
                                 )}
                                 {property.features.area && (
-                                  <div className="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-lg text-center">
-                                    <Ruler className="w-6 h-6 text-primary mb-2" />
-                                    <span className="text-xs text-gray-500 uppercase font-semibold">Superficie</span>
-                                    <span className="font-bold text-lg">{property.features.area}</span>
+                                  <div className="flex flex-col items-center justify-center p-3 md:p-4 bg-blue-50 rounded-lg text-center">
+                                    <Ruler className="w-5 h-5 md:w-6 md:h-6 text-primary mb-2" />
+                                    <span className="text-[10px] md:text-xs text-gray-500 uppercase font-semibold">Superficie</span>
+                                    <span className="font-bold text-base md:text-lg">{property.features.area}</span>
                                   </div>
                                 )}
                                 {property.features.parking && (
-                                  <div className="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-lg text-center">
-                                    <Car className="w-6 h-6 text-primary mb-2" />
-                                    <span className="text-xs text-gray-500 uppercase font-semibold">Cochera</span>
-                                    <span className="font-bold text-lg">Sí</span>
+                                  <div className="flex flex-col items-center justify-center p-3 md:p-4 bg-blue-50 rounded-lg text-center">
+                                    <Car className="w-5 h-5 md:w-6 md:h-6 text-primary mb-2" />
+                                    <span className="text-[10px] md:text-xs text-gray-500 uppercase font-semibold">Cochera</span>
+                                    <span className="font-bold text-base md:text-lg">Sí</span>
                                   </div>
                                 )}
                             </div>
@@ -315,9 +312,9 @@ function PropertyCard({ property }: { property: Property }) {
 
 export default function Properties() {
   return (
-    <section id="properties" className="py-20 md:py-32 bg-gray-50">
+    <section id="properties" className="py-16 md:py-32 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <h2 className="font-serif text-3xl md:text-4xl mb-4 text-primary">Propiedades Destacadas</h2>
           <div className="w-16 h-1 bg-primary mx-auto mb-6" />
           <p className="text-muted-foreground text-lg">

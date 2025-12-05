@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-32 bg-white">
+    <section id="about" className="py-16 md:py-32 bg-white">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           
           {/* Text Content */}
           <motion.div 
@@ -35,14 +35,17 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="order-1 md:order-2 flex justify-center"
           >
-            <div className="relative w-full max-w-sm aspect-[9/16] rounded-xl overflow-hidden shadow-2xl border border-gray-100 bg-black">
-              {/* Removed background=1 to allow audio control, but kept other params. 
-                  Vimeo iframe embeds usually default to unmuted if not autoplay=1&muted=1. 
-                  However, browsers block unmuted autoplay. 
-                  To ensure volume is max, user interaction is usually required or we remove the background param.
+            <div className="relative w-full max-w-[300px] md:max-w-sm aspect-[9/16] rounded-xl overflow-hidden shadow-2xl border border-gray-100 bg-black">
+              {/* 
+                Vimeo Params:
+                autoplay=1 : Start automatically
+                loop=1 : Loop forever (avoids recommendations)
+                autopause=0 : Don't pause when another video plays
+                muted=0 : Volume on (Browser policy might block autoplay if not muted)
+                background=1 : Removed to allow sound (but background=1 is usually the only way to bypass autoplay blocks reliably)
               */}
               <iframe 
-                src="https://player.vimeo.com/video/1143865550?h=04711083ad&title=0&byline=0&portrait=0&badge=0" 
+                src="https://player.vimeo.com/video/1143865550?h=04711083ad&autoplay=1&loop=1&autopause=0&muted=0&title=0&byline=0&portrait=0&badge=0" 
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[180%] h-full" 
                 frameBorder="0" 
                 allow="autoplay; fullscreen; picture-in-picture" 

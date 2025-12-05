@@ -12,7 +12,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white -z-20" />
       <div 
@@ -32,7 +32,7 @@ export default function Hero() {
             Brokers Inmobiliarios
           </div>
           
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.1] text-gray-900 mb-6 text-balance">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.1] text-gray-900 mb-6 text-balance">
             Tu próximo hogar, <span className="italic text-primary">inversión</span> o proyecto está acá.
           </h1>
           
@@ -41,11 +41,11 @@ export default function Hero() {
             Experiencia, transparencia y resultados.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Button 
               onClick={() => scrollToSection("#properties")}
               size="lg" 
-              className="bg-primary hover:bg-primary/90 text-white text-base px-8 py-6 h-auto rounded-sm shadow-lg shadow-primary/20 transition-all hover:translate-y-[-2px]"
+              className="bg-primary hover:bg-primary/90 text-white text-base px-8 py-6 h-auto rounded-sm shadow-lg shadow-primary/20 transition-all hover:translate-y-[-2px] w-full sm:w-auto"
             >
               Ver Propiedades
             </Button>
@@ -53,7 +53,7 @@ export default function Hero() {
               onClick={() => scrollToSection("#contact")}
               variant="outline" 
               size="lg" 
-              className="border-primary/20 text-primary hover:bg-primary/5 hover:text-primary text-base px-8 py-6 h-auto rounded-sm transition-all group"
+              className="border-primary/20 text-primary hover:bg-primary/5 hover:text-primary text-base px-8 py-6 h-auto rounded-sm transition-all group w-full sm:w-auto"
             >
               Contactar Ahora
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -65,7 +65,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          className="hidden md:block relative h-[600px] w-full"
+          className="hidden md:block relative h-[500px] lg:h-[600px] w-full"
         >
           {/* Main Image */}
           <div className="absolute top-10 right-10 w-4/5 h-4/5 bg-gray-200 rounded-sm overflow-hidden shadow-2xl">
