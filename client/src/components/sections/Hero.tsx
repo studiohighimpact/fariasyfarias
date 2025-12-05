@@ -13,22 +13,30 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-24 md:pt-20 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white -z-20" />
-      <div 
-        className="absolute inset-0 opacity-20 bg-cover bg-center -z-10 mix-blend-overlay grayscale" 
-        style={{ backgroundImage: `url(${heroImage})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent -z-10" />
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden">
+        <iframe
+          src="https://player.vimeo.com/video/1143889798?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+          className="absolute top-1/2 left-1/2 w-[177.77777778vh] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
+          frameBorder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          title="Hero Video"
+        />
+      </div>
 
-      <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
+      {/* Overlay to ensure text readability while seeing the video */}
+      <div className="absolute inset-0 bg-white/60 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent -z-10" />
+
+      <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-2xl"
         >
-          <div className="inline-block mb-4 px-3 py-1 bg-primary/10 text-primary text-xs font-semibold tracking-wider uppercase rounded-full border border-primary/20">
+          <div className="inline-block mb-4 px-3 py-1 bg-primary/10 text-primary text-xs font-semibold tracking-wider uppercase rounded-full border border-primary/20 bg-white/80 backdrop-blur-sm">
             Brokers Inmobiliarios
           </div>
           
@@ -36,8 +44,8 @@ export default function Hero() {
             Tu próximo hogar, <span className="italic text-primary">inversión</span> o proyecto está acá.
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed text-balance">
-            Asesoramiento inmobiliario profesional en Córdoba y Sierras Chicas. 
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-lg leading-relaxed text-balance font-medium">
+            Asesoramiento inmobiliario profesional en Córdoba. 
             Experiencia, transparencia y resultados.
           </p>
           
@@ -53,7 +61,7 @@ export default function Hero() {
               onClick={() => scrollToSection("#contact")}
               variant="outline" 
               size="lg" 
-              className="border-primary/20 text-primary hover:bg-primary/5 hover:text-primary text-base px-8 py-6 h-auto rounded-sm transition-all group w-full sm:w-auto"
+              className="border-primary/20 text-primary hover:bg-primary/5 hover:text-primary text-base px-8 py-6 h-auto rounded-sm transition-all group w-full sm:w-auto bg-white/50 backdrop-blur-sm"
             >
               Contactar Ahora
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
